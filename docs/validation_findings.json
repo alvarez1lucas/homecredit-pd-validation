@@ -1,0 +1,53 @@
+{
+  "_descripcion": "Hallazgos de las notebooks de análisis que no salen automáticamente del pipeline. Se mantienen a mano y el informe de validación los incluye con su referencia.",
+  "hallazgos": [
+    {
+      "id": "NB04-1",
+      "severidad": "Media",
+      "titulo": "PD no monótona respecto del monto solicitado",
+      "detalle": "En ~36% de los clientes, pedir más monto (con cuota y valor del bien proporcionales) baja la PD. El modelo aprendió una correlación de selección, no una relación causal.",
+      "recomendacion": "Resuelto en los challengers M1/M3 (monotone_constraints + credit_goods_ratio en lugar de AMT_GOODS_PRICE): violación 0%, a un costo de ~0,5–0,9 puntos de Gini. Ver reports/challengers.json.",
+      "referencia": "notebooks/04_robustez_counterfactuals.ipynb §4.2"
+    },
+    {
+      "id": "NB03-1",
+      "severidad": "Media",
+      "titulo": "Impacto diferencial por edad transmitido por los scores de bureau",
+      "detalle": "Los menores de 35 están sobre-representados en los rechazos incorrectos de alta confianza (ratio 1,8–2,3). SHAP muestra que la causa son los EXT_SOURCE (EXT_SOURCE_1 tiene correlación 0,60 con la edad), no la variable edad.",
+      "recomendacion": "Revisión manual de jóvenes rechazados cerca del cutoff; documentar la justificación de negocio; evaluar fuentes alternativas para clientes con poco historial.",
+      "referencia": "notebooks/03_error_analysis.ipynb §3.3, notebooks/01_eda.ipynb §1.4"
+    },
+    {
+      "id": "NB02-1",
+      "severidad": "Baja",
+      "titulo": "El cutoff por break-even usa la TEA nominal",
+      "detalle": "Con TEAs nominales altas (Argentina 80%, Brasil 59%) la regla aprueba al 99,9%. No descuenta inflación, fondeo ni costos operativos.",
+      "recomendacion": "Modelar el margen neto real por mercado antes de usar la regla fuera de USA.",
+      "referencia": "notebooks/02_threshold_analysis.ipynb §2.4"
+    },
+    {
+      "id": "NB04-2",
+      "severidad": "Baja",
+      "titulo": "Decisiones frágiles cerca del cutoff",
+      "detalle": "Con ruido de ±5% en las variables de entrada, la decisión cambia en el 27% de los clientes a menos de 3 pp del cutoff (contra el 0,6% lejos del cutoff).",
+      "recomendacion": "Banda de revisión manual de ±3 pp alrededor del cutoff (~5% de las solicitudes).",
+      "referencia": "notebooks/04_robustez_counterfactuals.ipynb §4.1"
+    },
+    {
+      "id": "NB07-1",
+      "severidad": "Media",
+      "titulo": "Calibración desigual por género",
+      "detalle": "Con el género fuera del modelo, la PD subestima a los hombres (9,2% vs 10,2% observado, −9,6%) y sobreestima a las mujeres (+4,4%). Es el trade-off entre fairness through unawareness y calibración por grupo.",
+      "recomendacion": "Documentar la decisión de política; monitorear la calibración por género junto con DIR/DPD.",
+      "referencia": "notebooks/07_advanced_validation.ipynb §1"
+    },
+    {
+      "id": "NB06-1",
+      "severidad": "Baja",
+      "titulo": "La información de pagos anteriores es incremental",
+      "detalle": "El stack XGBoost + LSTM llega a Gini 0,530 (+0,013). Variables agregadas simples de installments_payments dentro de XGBoost (challenger M2) logran 0,534: la misma ganancia sin red recurrente.",
+      "recomendacion": "Preferir las variables agregadas (M2/M3) al LSTM; ver challenger recomendado.",
+      "referencia": "notebooks/06_deep_learning.ipynb §3; reports/challengers.json"
+    }
+  ]
+}

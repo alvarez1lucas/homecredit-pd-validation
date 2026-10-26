@@ -1,0 +1,98 @@
+name: Credit Risk — CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Entrenamiento + validación completos: se disparan a mano desde la pestaña Actions
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+
+  # ─── 1. Tests unitarios (no necesitan datos) ──────────────────────────────
+  tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest tests/ -v --cov=src --cov-report=term-missing
+
+  # ─── 2. Pipeline completo + quality gates (manual) ────────────────────────
+  # Requiere los secrets KAGGLE_USERNAME y KAGGLE_KEY, y haber aceptado las
+  # reglas de la competencia en kaggle.com con esa cuenta.
+  train-and-validate:
+    name: Train, validate & gates
+    runs-on: ubuntu-latest
+    needs: tests
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt kaggle
+
+      - name: Download data from Kaggle
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          kaggle competitions download -c home-credit-default-risk -f application_train.csv -p data/raw
+          cd data/raw && unzip -o application_train.csv.zip && rm application_train.csv.zip
+
+      - name: Run pipeline
+        run: python run_all.py
+
+      - name: Gate — validación del modelo
+        run: |
+          python - <<'EOF'
+          import json, sys
+          m = json.load(open("reports/validation_metrics.json"))
+          for k in ["gini", "auc_roc", "ks", "ece", "psi"]:
+              print(f"{k:<8} {m[k]}")
+          if not m["validation_pass"]:
+              print("BLOCKED: el modelo no pasa los checks de validación (ver reports/model_validation.json)")
+              sys.exit(1)
+          print("Validation gate: PASSED")
+          EOF
+
+      # El gate de fairness es informativo: el resultado conocido es FAIL en edad
+      # y la decisión sobre cómo tratarlo es de negocio/legal, no del pipeline.
+      - name: Gate — fairness (informativo)
+        run: |
+          python - <<'EOF'
+          import json
+          m = json.load(open("reports/fairness_metrics.json"))
+          print(json.dumps(m, indent=2))
+          if not m["fairness_pass"]:
+              print("::warning::Fairness con flags — revisar reports/fairness_report.json")
+          EOF
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-reports-${{ github.sha }}
+          path: |
+            reports/*.json
+            reports/validation_report.pdf
+            reports/model_cards/
+            reports/figures/
+          retention-days: 30

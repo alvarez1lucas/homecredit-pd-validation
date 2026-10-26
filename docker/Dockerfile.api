@@ -1,0 +1,25 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY src/ ./src/
+COPY configs/ ./configs/
+
+# Artefactos del modelo (generados por run_all.py antes del build).
+# En un entorno real vendrían de un model registry, no de la imagen.
+COPY models/champion/model.pkl            ./models/champion/model.pkl
+COPY models/champion/calibrator.pkl       ./models/champion/calibrator.pkl
+COPY models/champion/shap_explainer.pkl   ./models/champion/shap_explainer.pkl
+COPY models/champion/model_metadata.json  ./models/champion/model_metadata.json
+COPY data/processed/preprocessor.pkl      ./data/processed/preprocessor.pkl
+COPY data/processed/feature_names.json    ./data/processed/feature_names.json
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/model/health')" || exit 1
+
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
