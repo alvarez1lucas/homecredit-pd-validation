@@ -1,0 +1,46 @@
+{
+  "_descripcion": "Supuestos de negocio para pasar de PD a decisión. Todos los valores son supuestos de un ejercicio de portfolio, no datos de una entidad real.",
+  "mercado_referencia": "USA",
+  "lgd_default": 0.45,
+  "mercados": {
+    "Argentina": {
+      "tasa_interes_anual": 0.80,
+      "lgd": 0.68,
+      "fuente_tasa": "BCRA, tasas de préstamos personales (abr 2026). TEA nominal: no descuenta inflación ni costo de fondeo.",
+      "fuente_lgd": "Supuesto (BCRA Informe de Estabilidad Financiera como referencia de morosidad)."
+    },
+    "USA": {
+      "tasa_interes_anual": 0.115,
+      "lgd": 0.45,
+      "fuente_tasa": "Federal Reserve G.19 Consumer Credit (2026).",
+      "fuente_lgd": "Supuesto en el rango de estudios de consumer ABS (35-55%)."
+    },
+    "Brasil": {
+      "tasa_interes_anual": 0.59,
+      "lgd": 0.60,
+      "fuente_tasa": "Banco Central do Brasil, crédito libre a familias (nov 2025).",
+      "fuente_lgd": "Supuesto por analogía con mercados emergentes."
+    },
+    "Colombia": {
+      "tasa_interes_anual": 0.2676,
+      "lgd": 0.55,
+      "fuente_tasa": "Superintendencia Financiera, tasa de usura consumo (abr 2026).",
+      "fuente_lgd": "Supuesto basado en reportes de Asobancaria."
+    }
+  },
+  "master_scale": {
+    "_descripcion": "Límites superiores de PD de cada grado (escala logarítmica). El último grado es abierto.",
+    "grados": ["A", "B", "C", "D", "E", "F", "G"],
+    "limites_superiores": [0.02, 0.04, 0.07, 0.11, 0.17, 0.27]
+  },
+  "umbrales_validacion": {
+    "gini_min": 0.20,
+    "ks_min": 0.15,
+    "psi_max": 0.25,
+    "ece_max": 0.02,
+    "citl_max_rel": 0.10,
+    "fairness_dpd_max": 0.10,
+    "fairness_dir_min": 0.80,
+    "fairness_eo_gap_max": 0.10
+  }
+}

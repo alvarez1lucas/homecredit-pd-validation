@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+
+# Datos crudos y procesados — no se suben (licencia de Kaggle y tamaño)
+/data/raw/
+/data/processed/
+*.parquet
+# ...excepto las predicciones del test que usa el dashboard (~1 MB)
+!reports/dashboard/test_predictions.parquet
+
+# Modelos y tracking — se regeneran con run_all.py
+/models/
+/mlruns/
+/mlflow.db
+*.pkl
+*.pt
+
+# Figuras, Model Card, informe PDF y JSON de reports/ SÍ se versionan: el README y el dashboard los usan
+
+# Notas personales de estudio — no se suben
+GUIA_PERSONAL.md

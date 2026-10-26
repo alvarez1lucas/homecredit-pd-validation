@@ -1,0 +1,5 @@
+# Notebooks de análisis (además del pipeline)
+-r requirements.txt
+torch>=2.3
+seaborn>=0.13
+ipykernel>=6.29
