@@ -1,0 +1,556 @@
+{
+  "framework": "SR 26-2 (abr 2026, reemplaza a SR 11-7) — estructura de validación de SR 11-7",
+  "overall_pass": true,
+  "checks": {
+    "gini": {
+      "value": 0.5176,
+      "threshold": ">= 0.2",
+      "pass": true
+    },
+    "ks": {
+      "value": 0.3825,
+      "threshold": ">= 0.15",
+      "pass": true
+    },
+    "lift_benchmark": {
+      "value": 0.0214,
+      "threshold": "> 0",
+      "pass": true
+    },
+    "ece": {
+      "value": 0.0045,
+      "threshold": "<= 0.02",
+      "pass": true
+    },
+    "citl": {
+      "value": -0.016,
+      "threshold": "|x| <= 0.1",
+      "pass": true
+    },
+    "master_scale": {
+      "value": "ninguno",
+      "threshold": "sin grados en rojo (Jeffreys p < 1%)",
+      "pass": true
+    },
+    "psi": {
+      "value": 0.0002,
+      "threshold": "<= 0.25",
+      "pass": true
+    }
+  },
+  "discriminatory_power": {
+    "gini": 0.5176,
+    "gini_ci95": [
+      0.503,
+      0.5322
+    ],
+    "auc_roc": 0.7588,
+    "gini_benchmark": 0.4962,
+    "gini_lift_benchmark": 0.0214,
+    "ks_statistic": 0.3825,
+    "ks_pvalue": 0.0
+  },
+  "calibration": {
+    "raw_score": {
+      "hl_statistic": 33398.6,
+      "hl_pvalue": 0.0,
+      "well_calibrated": false,
+      "ece": 0.3075,
+      "mean_pd": 0.3882,
+      "default_rate": 0.0807,
+      "citl_rel_diff": 3.8092,
+      "brier": 0.182
+    },
+    "calibrated_pd": {
+      "hl_statistic": 21.69,
+      "hl_pvalue": 0.0055,
+      "well_calibrated": false,
+      "ece": 0.0045,
+      "mean_pd": 0.0794,
+      "default_rate": 0.0807,
+      "citl_rel_diff": -0.016,
+      "brier": 0.0677
+    }
+  },
+  "master_scale": {
+    "pd_tested": "PD de grado con MoC",
+    "table": [
+      {
+        "grade": "A",
+        "pd_range": "[0%, 2%)",
+        "n": 8595,
+        "share": 0.1397,
+        "defaults": 124,
+        "pd_avg": 0.0175,
+        "default_rate": 0.0144,
+        "dr_ci95": [
+          0.0121,
+          0.0171
+        ],
+        "p_binomial": 0.9884,
+        "p_jeffreys": 0.987,
+        "result": "ok"
+      },
+      {
+        "grade": "B",
+        "pd_range": "[2%, 4%)",
+        "n": 14441,
+        "share": 0.2348,
+        "defaults": 395,
+        "pd_avg": 0.0298,
+        "default_rate": 0.0274,
+        "dr_ci95": [
+          0.0248,
+          0.0301
+        ],
+        "p_binomial": 0.9617,
+        "p_jeffreys": 0.9596,
+        "result": "ok"
+      },
+      {
+        "grade": "C",
+        "pd_range": "[4%, 7%)",
+        "n": 14392,
+        "share": 0.234,
+        "defaults": 765,
+        "pd_avg": 0.0561,
+        "default_rate": 0.0532,
+        "dr_ci95": [
+          0.0496,
+          0.0569
+        ],
+        "p_binomial": 0.9408,
+        "p_jeffreys": 0.9386,
+        "result": "ok"
+      },
+      {
+        "grade": "D",
+        "pd_range": "[7%, 11%)",
+        "n": 10060,
+        "share": 0.1636,
+        "defaults": 885,
+        "pd_avg": 0.089,
+        "default_rate": 0.088,
+        "dr_ci95": [
+          0.0826,
+          0.0936
+        ],
+        "p_binomial": 0.6463,
+        "p_jeffreys": 0.6398,
+        "result": "ok"
+      },
+      {
+        "grade": "E",
+        "pd_range": "[11%, 17%)",
+        "n": 7337,
+        "share": 0.1193,
+        "defaults": 1009,
+        "pd_avg": 0.1456,
+        "default_rate": 0.1375,
+        "dr_ci95": [
+          0.1298,
+          0.1455
+        ],
+        "p_binomial": 0.9767,
+        "p_jeffreys": 0.9758,
+        "result": "ok"
+      },
+      {
+        "grade": "F",
+        "pd_range": "[17%, 27%)",
+        "n": 4587,
+        "share": 0.0746,
+        "defaults": 1013,
+        "pd_avg": 0.2169,
+        "default_rate": 0.2208,
+        "dr_ci95": [
+          0.209,
+          0.233
+        ],
+        "p_binomial": 0.2637,
+        "p_jeffreys": 0.258,
+        "result": "ok"
+      },
+      {
+        "grade": "G",
+        "pd_range": "[27%, 100%)",
+        "n": 2091,
+        "share": 0.034,
+        "defaults": 774,
+        "pd_avg": 0.3751,
+        "default_rate": 0.3702,
+        "dr_ci95": [
+          0.3497,
+          0.391
+        ],
+        "p_binomial": 0.6872,
+        "p_jeffreys": 0.6791,
+        "result": "ok"
+      }
+    ],
+    "summary": {
+      "monotonic_default_rate": true,
+      "grades_underestimating": [],
+      "grades_amber": [],
+      "grades_overestimating": [],
+      "max_grade_share": 0.2348,
+      "hhi": 0.1771
+    },
+    "pre_moc": {
+      "table": [
+        {
+          "grade": "A",
+          "pd_range": "[0%, 2%)",
+          "n": 8595,
+          "share": 0.1397,
+          "defaults": 124,
+          "pd_avg": 0.0134,
+          "default_rate": 0.0144,
+          "dr_ci95": [
+            0.0121,
+            0.0171
+          ],
+          "p_binomial": 0.2253,
+          "p_jeffreys": 0.2118,
+          "result": "ok"
+        },
+        {
+          "grade": "B",
+          "pd_range": "[2%, 4%)",
+          "n": 14441,
+          "share": 0.2348,
+          "defaults": 395,
+          "pd_avg": 0.0296,
+          "default_rate": 0.0274,
+          "dr_ci95": [
+            0.0248,
+            0.0301
+          ],
+          "p_binomial": 0.952,
+          "p_jeffreys": 0.9495,
+          "result": "ok"
+        },
+        {
+          "grade": "C",
+          "pd_range": "[4%, 7%)",
+          "n": 14392,
+          "share": 0.234,
+          "defaults": 765,
+          "pd_avg": 0.0535,
+          "default_rate": 0.0532,
+          "dr_ci95": [
+            0.0496,
+            0.0569
+          ],
+          "p_binomial": 0.5878,
+          "p_jeffreys": 0.5806,
+          "result": "ok"
+        },
+        {
+          "grade": "D",
+          "pd_range": "[7%, 11%)",
+          "n": 10060,
+          "share": 0.1636,
+          "defaults": 885,
+          "pd_avg": 0.088,
+          "default_rate": 0.088,
+          "dr_ci95": [
+            0.0826,
+            0.0936
+          ],
+          "p_binomial": 0.5075,
+          "p_jeffreys": 0.5005,
+          "result": "ok"
+        },
+        {
+          "grade": "E",
+          "pd_range": "[11%, 17%)",
+          "n": 7337,
+          "share": 0.1193,
+          "defaults": 1009,
+          "pd_avg": 0.1358,
+          "default_rate": 0.1375,
+          "dr_ci95": [
+            0.1298,
+            0.1455
+          ],
+          "p_binomial": 0.34,
+          "p_jeffreys": 0.3338,
+          "result": "ok"
+        },
+        {
+          "grade": "F",
+          "pd_range": "[17%, 27%)",
+          "n": 4587,
+          "share": 0.0746,
+          "defaults": 1013,
+          "pd_avg": 0.2107,
+          "default_rate": 0.2208,
+          "dr_ci95": [
+            0.209,
+            0.233
+          ],
+          "p_binomial": 0.0484,
+          "p_jeffreys": 0.0466,
+          "result": "alerta"
+        },
+        {
+          "grade": "G",
+          "pd_range": "[27%, 100%)",
+          "n": 2091,
+          "share": 0.034,
+          "defaults": 774,
+          "pd_avg": 0.3458,
+          "default_rate": 0.3702,
+          "dr_ci95": [
+            0.3497,
+            0.391
+          ],
+          "p_binomial": 0.0104,
+          "p_jeffreys": 0.0098,
+          "result": "subestima"
+        }
+      ],
+      "summary": {
+        "monotonic_default_rate": true,
+        "grades_underestimating": [
+          "G"
+        ],
+        "grades_amber": [
+          "F"
+        ],
+        "grades_overestimating": [],
+        "max_grade_share": 0.2348,
+        "hhi": 0.1771
+      }
+    },
+    "moc": {
+      "A": {
+        "n": 3500,
+        "defaults": 56,
+        "pd_avg": 0.0135,
+        "default_rate": 0.016,
+        "dr_jeffreys_q75": 0.0175,
+        "pd_grade": 0.0175,
+        "moc_factor": 1.301
+      },
+      "B": {
+        "n": 5829,
+        "defaults": 164,
+        "pd_avg": 0.0298,
+        "default_rate": 0.0281,
+        "dr_jeffreys_q75": 0.0296,
+        "pd_grade": 0.0298,
+        "moc_factor": 1.0
+      },
+      "C": {
+        "n": 5576,
+        "defaults": 301,
+        "pd_avg": 0.0535,
+        "default_rate": 0.054,
+        "dr_jeffreys_q75": 0.0561,
+        "pd_grade": 0.0561,
+        "moc_factor": 1.047
+      },
+      "D": {
+        "n": 4027,
+        "defaults": 346,
+        "pd_avg": 0.0877,
+        "default_rate": 0.0859,
+        "dr_jeffreys_q75": 0.089,
+        "pd_grade": 0.089,
+        "moc_factor": 1.015
+      },
+      "E": {
+        "n": 2912,
+        "defaults": 411,
+        "pd_avg": 0.1361,
+        "default_rate": 0.1411,
+        "dr_jeffreys_q75": 0.1456,
+        "pd_grade": 0.1456,
+        "moc_factor": 1.069
+      },
+      "F": {
+        "n": 1924,
+        "defaults": 405,
+        "pd_avg": 0.2103,
+        "default_rate": 0.2105,
+        "dr_jeffreys_q75": 0.2169,
+        "pd_grade": 0.2169,
+        "moc_factor": 1.031
+      },
+      "G": {
+        "n": 833,
+        "defaults": 303,
+        "pd_avg": 0.3443,
+        "default_rate": 0.3637,
+        "dr_jeffreys_q75": 0.3751,
+        "pd_grade": 0.3751,
+        "moc_factor": 1.089
+      }
+    },
+    "moc_el_impact": 0.0524
+  },
+  "stability": {
+    "psi_train_test": 0.0002,
+    "note": "Split aleatorio: el PSI mide homogeneidad train/test, no estabilidad temporal."
+  },
+  "stress_testing": {
+    "lgd": 0.45,
+    "cutoff_pd": 0.2035,
+    "baseline": {
+      "mean_pd": 0.0794,
+      "expected_loss": 1295039083.0,
+      "el_rate": 0.0352,
+      "approval_rate": 0.9261,
+      "auc": 0.7588
+    },
+    "scenarios": {
+      "income_shock_moderate": {
+        "mean_pd": 0.0807,
+        "expected_loss": 1308833329.0,
+        "el_rate": 0.0356,
+        "approval_rate": 0.9232,
+        "auc": 0.759,
+        "description": "Ingreso real −25% (desempleo / inflación no compensada)",
+        "pd_change_rel": 0.0164,
+        "el_change_rel": 0.0107,
+        "approval_change": -0.0029
+      },
+      "income_shock_severe": {
+        "mean_pd": 0.0818,
+        "expected_loss": 1324004998.0,
+        "el_rate": 0.036,
+        "approval_rate": 0.9208,
+        "auc": 0.7586,
+        "description": "Ingreso real −40%",
+        "pd_change_rel": 0.0302,
+        "el_change_rel": 0.0224,
+        "approval_change": -0.0053
+      },
+      "bureau_deterioration": {
+        "mean_pd": 0.1108,
+        "expected_loss": 1819667435.0,
+        "el_rate": 0.0495,
+        "approval_rate": 0.8738,
+        "auc": 0.7552,
+        "description": "Scores de bureau (EXT_SOURCE 1-3) −20%",
+        "pd_change_rel": 0.3955,
+        "el_change_rel": 0.4051,
+        "approval_change": -0.0523
+      },
+      "combined_recession": {
+        "mean_pd": 0.1072,
+        "expected_loss": 1738541706.0,
+        "el_rate": 0.0473,
+        "approval_rate": 0.8778,
+        "auc": 0.755,
+        "description": "Recesión: ingreso −25% + bureau −15% + cuotas +15% (tasas)",
+        "pd_change_rel": 0.3501,
+        "el_change_rel": 0.3425,
+        "approval_change": -0.0483
+      }
+    }
+  },
+  "sensitivity_top": {
+    "num__EXT_SOURCE_3": 0.05728,
+    "num__EXT_SOURCE_2": 0.04416,
+    "num__EXT_SOURCE_1": 0.01931,
+    "num__AMT_GOODS_PRICE": 0.00918,
+    "num__credit_goods_ratio": 0.00641,
+    "num__DAYS_EMPLOYED": 0.00349,
+    "cat__NAME_EDUCATION_TYPE_Higher education": 0.00298,
+    "cat__NAME_CONTRACT_TYPE_Cash loans": 0.00158,
+    "num__missingindicator_AMT_REQ_CREDIT_BUREAU_YEAR": 0.00107,
+    "num__REGION_RATING_CLIENT_W_CITY": 0.00093,
+    "cat__OCCUPATION_TYPE_Drivers": 0.00066,
+    "cat__WALLSMATERIAL_MODE_Panel": 0.00059,
+    "cat__NAME_INCOME_TYPE_Working": 0.00058,
+    "cat__OCCUPATION_TYPE_Laborers": 0.00045,
+    "cat__NAME_EDUCATION_TYPE_Secondary / secondary special": 0.0004,
+    "num__DEF_60_CNT_SOCIAL_CIRCLE": 0.00032,
+    "cat__NAME_CONTRACT_TYPE_Revolving loans": 0.00018,
+    "cat__OCCUPATION_TYPE_Low-skill Laborers": 5e-05,
+    "num__DEF_30_CNT_SOCIAL_CIRCLE": 0.0,
+    "cat__NAME_INCOME_TYPE_Pensioner": -5e-05
+  },
+  "segment_performance": {
+    "age_group": {
+      "25-35": {
+        "n": 14389,
+        "gini": 0.509,
+        "mean_pd": 0.1037,
+        "default_rate": 0.1051
+      },
+      "35-45": {
+        "n": 16838,
+        "gini": 0.5317,
+        "mean_pd": 0.0821,
+        "default_rate": 0.0828
+      },
+      "45-55": {
+        "n": 14057,
+        "gini": 0.518,
+        "mean_pd": 0.0713,
+        "default_rate": 0.0733
+      },
+      "<25": {
+        "n": 2422,
+        "gini": 0.4636,
+        "mean_pd": 0.1221,
+        "default_rate": 0.1173
+      },
+      ">55": {
+        "n": 13797,
+        "gini": 0.4217,
+        "mean_pd": 0.0517,
+        "default_rate": 0.0538
+      }
+    },
+    "income_type": {
+      "Commercial associate": {
+        "n": 14344,
+        "gini": 0.509,
+        "mean_pd": 0.0737,
+        "default_rate": 0.0706
+      },
+      "Pensioner": {
+        "n": 11228,
+        "gini": 0.4451,
+        "mean_pd": 0.0538,
+        "default_rate": 0.055
+      },
+      "State servant": {
+        "n": 4185,
+        "gini": 0.5251,
+        "mean_pd": 0.0562,
+        "default_rate": 0.0538
+      },
+      "Working": {
+        "n": 31731,
+        "gini": 0.5117,
+        "mean_pd": 0.0941,
+        "default_rate": 0.0979
+      }
+    },
+    "gender": {
+      "F": {
+        "n": 40561,
+        "gini": 0.5035,
+        "mean_pd": 0.073,
+        "default_rate": 0.0699
+      },
+      "M": {
+        "n": 20940,
+        "gini": 0.5187,
+        "mean_pd": 0.0919,
+        "default_rate": 0.1017
+      }
+    }
+  },
+  "cutoff_policy": {
+    "market": "USA",
+    "cutoff_pd": 0.2035,
+    "lgd": 0.45
+  }
+}

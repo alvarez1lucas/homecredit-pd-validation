@@ -1,0 +1,19 @@
+{
+  "schema_version": "2.0",
+  "generated_at": "2026-10-25T21:42:49",
+  "model": "xgboost",
+  "validation_pass": true,
+  "validation_status": "APROBADO CON CONDICIONES",
+  "fairness_pass": false,
+  "gini": 0.5176,
+  "auc": 0.7588,
+  "ece_calibrated": 0.0045,
+  "limitations": [
+    "Discriminación más baja en: <25 (Gini 0.464), >55 (Gini 0.422), Pensioner (Gini 0.445), contra 0.518 global.",
+    "Fairness — age_group: DPD 0.151 supera 0.1; TPR gap 0.319 supera 0.1; FPR gap 0.124 supera 0.1.",
+    "Sin dimensión temporal: application_train no trae fecha de originación, así que no hay validación out-of-time. El PSI train/test sólo mide la homogeneidad del split aleatorio.",
+    "El TARGET marca dificultades de pago; no equivale a una definición regulatoria de default (p. ej. 90+ días de mora) ni tiene un horizonte de 12 meses.",
+    "La calibración se ajustó sobre un 10% del train; debería re-estimarse con datos recientes antes de usarse.",
+    "Sólo usa application_train: bureau y previous_application quedan sin explotar."
+  ]
+}

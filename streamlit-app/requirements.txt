@@ -1,0 +1,11 @@
+streamlit>=1.56
+pandas>=2.2
+numpy>=2.0
+plotly>=5.20
+pyarrow>=15.0
+# Sólo para el simulador individual (si los artefactos del modelo están presentes)
+scikit-learn>=1.5
+xgboost>=2.1
+shap>=0.46
+loguru>=0.7
+scipy>=1.13

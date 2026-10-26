@@ -1,0 +1,245 @@
+{
+  "metodo": "WoE/IV + regresión logística + escala de puntos",
+  "escala": {
+    "pdo": 20,
+    "base_score": 600,
+    "base_odds": "50:1"
+  },
+  "n_variables": 14,
+  "variables": [
+    "EXT_SOURCE_3",
+    "EXT_SOURCE_2",
+    "EXT_SOURCE_1",
+    "DAYS_EMPLOYED",
+    "OCCUPATION_TYPE",
+    "credit_goods_ratio",
+    "ORGANIZATION_TYPE",
+    "NAME_INCOME_TYPE",
+    "NAME_EDUCATION_TYPE",
+    "DAYS_LAST_PHONE_CHANGE",
+    "AMT_GOODS_PRICE",
+    "DAYS_ID_PUBLISH",
+    "DAYS_REGISTRATION",
+    "REGION_RATING_CLIENT_W_CITY"
+  ],
+  "gini_test": 0.482,
+  "gini_champion_xgboost": 0.5176,
+  "gap_vs_champion": 0.0356,
+  "puntaje_test": {
+    "p05": 522,
+    "mediana": 567,
+    "p95": 609
+  },
+  "iv": [
+    {
+      "variable": "EXT_SOURCE_3",
+      "iv": 0.3352,
+      "fuerza": "fuerte",
+      "seleccionada": true
+    },
+    {
+      "variable": "EXT_SOURCE_2",
+      "iv": 0.3003,
+      "fuerza": "fuerte",
+      "seleccionada": true
+    },
+    {
+      "variable": "EXT_SOURCE_1",
+      "iv": 0.1542,
+      "fuerza": "media",
+      "seleccionada": true
+    },
+    {
+      "variable": "DAYS_EMPLOYED",
+      "iv": 0.1128,
+      "fuerza": "media",
+      "seleccionada": true
+    },
+    {
+      "variable": "age_years",
+      "iv": 0.0898,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "OCCUPATION_TYPE",
+      "iv": 0.0764,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "credit_goods_ratio",
+      "iv": 0.067,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "ORGANIZATION_TYPE",
+      "iv": 0.0591,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "NAME_INCOME_TYPE",
+      "iv": 0.0576,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "NAME_EDUCATION_TYPE",
+      "iv": 0.0487,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "DAYS_LAST_PHONE_CHANGE",
+      "iv": 0.0465,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "AMT_GOODS_PRICE",
+      "iv": 0.0379,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "DAYS_ID_PUBLISH",
+      "iv": 0.0374,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "DAYS_REGISTRATION",
+      "iv": 0.0286,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "REGION_RATING_CLIENT_W_CITY",
+      "iv": 0.0276,
+      "fuerza": "débil",
+      "seleccionada": true
+    },
+    {
+      "variable": "AMT_CREDIT",
+      "iv": 0.0276,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "WALLSMATERIAL_MODE",
+      "iv": 0.0258,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "NAME_FAMILY_STATUS",
+      "iv": 0.0248,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "EMERGENCYSTATE_MODE",
+      "iv": 0.0233,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "OWN_CAR_AGE",
+      "iv": 0.0227,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "REGION_POPULATION_RELATIVE",
+      "iv": 0.0215,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "HOUSETYPE_MODE",
+      "iv": 0.0205,
+      "fuerza": "débil",
+      "seleccionada": false
+    },
+    {
+      "variable": "AMT_REQ_CREDIT_BUREAU_YEAR",
+      "iv": 0.0172,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "NAME_HOUSING_TYPE",
+      "iv": 0.0156,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "NAME_CONTRACT_TYPE",
+      "iv": 0.0142,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "DEF_30_CNT_SOCIAL_CIRCLE",
+      "iv": 0.0135,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "AMT_ANNUITY",
+      "iv": 0.0127,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "AMT_INCOME_TOTAL",
+      "iv": 0.0113,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "HOUR_APPR_PROCESS_START",
+      "iv": 0.0099,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "annuity_income_ratio",
+      "iv": 0.0056,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "CNT_CHILDREN",
+      "iv": 0.0051,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "credit_income_ratio",
+      "iv": 0.0037,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "CNT_FAM_MEMBERS",
+      "iv": 0.0028,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "WEEKDAY_APPR_PROCESS_START",
+      "iv": 0.001,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    },
+    {
+      "variable": "DEF_60_CNT_SOCIAL_CIRCLE",
+      "iv": 0.001,
+      "fuerza": "no predictiva",
+      "seleccionada": false
+    }
+  ]
+}

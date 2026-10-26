@@ -1,0 +1,37 @@
+{
+  "evaluation": "test set; epochs elegidas en validaci\u00f3n; stacking ajustado en calibraci\u00f3n",
+  "xgboost_gini": 0.5176,
+  "tabular_nn": {
+    "gini": 0.5082,
+    "best_epoch": 8,
+    "architecture": [
+      256,
+      128,
+      64
+    ],
+    "dropout": 0.3
+  },
+  "ensemble_xgb_nn": {
+    "gini": 0.5201,
+    "method": "simple_average"
+  },
+  "autoencoder": {
+    "pct_flagged": 0.0499813017251191,
+    "default_rate_atipicos": 0.08685751463890697,
+    "default_rate_tipicos": 0.0804052782008934
+  },
+  "lstm": {
+    "gini_with_history": 0.1868,
+    "coverage_test": 0.9482626863730225,
+    "xgboost_gini_same_clients": 0.515,
+    "best_epoch": 12
+  },
+  "stack_xgb_lstm": {
+    "gini": 0.5302,
+    "delta_vs_xgb": 0.0126,
+    "delta_ci95": [
+      0.0083,
+      0.0163
+    ]
+  }
+}

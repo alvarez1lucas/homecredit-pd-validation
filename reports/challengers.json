@@ -1,0 +1,201 @@
+{
+  "cutoff_pd": 0.2035,
+  "models": [
+    {
+      "model": "Champion (XGBoost + Platt)",
+      "n_features": 164,
+      "best_iteration": 384,
+      "gini": 0.5176,
+      "gini_ci95": [
+        0.5031,
+        0.5283
+      ],
+      "ece": 0.0045,
+      "mean_pd": 0.0794,
+      "delta_gini_ci95": [
+        0.0,
+        0.0
+      ],
+      "grades_red": [
+        "G"
+      ],
+      "grades_amber": [
+        "F"
+      ],
+      "grades_red_with_moc": [],
+      "grades_amber_with_moc": [],
+      "moc_factors": {
+        "A": 1.301,
+        "B": 1.0,
+        "C": 1.047,
+        "D": 1.015,
+        "E": 1.069,
+        "F": 1.031,
+        "G": 1.089
+      },
+      "monotonic_trend_violation": 0.35,
+      "monotonic_any_step_violation": 0.999,
+      "approval_rate": 0.9261,
+      "default_rate_approved": 0.0627,
+      "age_dpd": 0.1511,
+      "age_dir": 0.8466,
+      "gender_dir": 0.9535,
+      "delta_gini_vs_champion": 0.0
+    },
+    {
+      "model": "M1_monotonico",
+      "n_features": 162,
+      "best_iteration": 289,
+      "gini": 0.5091,
+      "gini_ci95": [
+        0.4949,
+        0.5202
+      ],
+      "ece": 0.0033,
+      "mean_pd": 0.0797,
+      "delta_gini_ci95": [
+        -0.0119,
+        -0.0047
+      ],
+      "grades_red": [
+        "G"
+      ],
+      "grades_amber": [],
+      "grades_red_with_moc": [],
+      "grades_amber_with_moc": [],
+      "moc_factors": {
+        "A": 1.056,
+        "B": 1.117,
+        "C": 1.056,
+        "D": 1.0,
+        "E": 1.05,
+        "F": 1.034,
+        "G": 1.098
+      },
+      "monotonic_trend_violation": 0.0,
+      "monotonic_any_step_violation": 0.0,
+      "approval_rate": 0.9282,
+      "default_rate_approved": 0.0639,
+      "age_dpd": 0.1422,
+      "age_dir": 0.8558,
+      "gender_dir": 0.9586,
+      "delta_gini_vs_champion": -0.0085
+    },
+    {
+      "model": "M2_pagos",
+      "n_features": 175,
+      "best_iteration": 343,
+      "gini": 0.5336,
+      "gini_ci95": [
+        0.5191,
+        0.5454
+      ],
+      "ece": 0.0034,
+      "mean_pd": 0.0795,
+      "delta_gini_ci95": [
+        0.0109,
+        0.0207
+      ],
+      "grades_red": [
+        "G"
+      ],
+      "grades_amber": [],
+      "grades_red_with_moc": [],
+      "grades_amber_with_moc": [],
+      "moc_factors": {
+        "A": 1.141,
+        "B": 1.063,
+        "C": 1.0,
+        "D": 1.0,
+        "E": 1.105,
+        "F": 1.017,
+        "G": 1.137
+      },
+      "monotonic_trend_violation": 0.327,
+      "monotonic_any_step_violation": 0.996,
+      "approval_rate": 0.9228,
+      "default_rate_approved": 0.0613,
+      "age_dpd": 0.1489,
+      "age_dir": 0.8484,
+      "gender_dir": 0.9564,
+      "top_features_gain": {
+        "EXT_SOURCE_3": 294.34,
+        "EXT_SOURCE_2": 255.27,
+        "NAME_EDUCATION_TYPE_Higher education": 183.08,
+        "missingindicator_AMT_REQ_CREDIT_BUREAU_YEAR": 175.34,
+        "EXT_SOURCE_1": 122.05,
+        "NAME_INCOME_TYPE_Working": 102.3,
+        "credit_goods_ratio": 96.43,
+        "OCCUPATION_TYPE_Drivers": 92.96,
+        "OCCUPATION_TYPE_Laborers": 89.84,
+        "pay_recent_days_late_mean": 85.29
+      },
+      "delta_gini_vs_champion": 0.016
+    },
+    {
+      "model": "M3_monotonico_pagos",
+      "n_features": 173,
+      "best_iteration": 203,
+      "gini": 0.5282,
+      "gini_ci95": [
+        0.5132,
+        0.5402
+      ],
+      "ece": 0.0036,
+      "mean_pd": 0.0796,
+      "delta_gini_ci95": [
+        0.005,
+        0.0161
+      ],
+      "grades_red": [
+        "G"
+      ],
+      "grades_amber": [],
+      "grades_red_with_moc": [],
+      "grades_amber_with_moc": [],
+      "moc_factors": {
+        "A": 1.0,
+        "B": 1.096,
+        "C": 1.003,
+        "D": 1.002,
+        "E": 1.051,
+        "F": 1.06,
+        "G": 1.119
+      },
+      "monotonic_trend_violation": 0.0,
+      "monotonic_any_step_violation": 0.0,
+      "approval_rate": 0.9228,
+      "default_rate_approved": 0.062,
+      "age_dpd": 0.1465,
+      "age_dir": 0.8508,
+      "gender_dir": 0.9588,
+      "top_features_gain": {
+        "EXT_SOURCE_3": 342.73,
+        "EXT_SOURCE_2": 316.61,
+        "NAME_EDUCATION_TYPE_Higher education": 188.87,
+        "missingindicator_AMT_REQ_CREDIT_BUREAU_YEAR": 169.1,
+        "EXT_SOURCE_1": 143.22,
+        "NAME_INCOME_TYPE_Working": 112.74,
+        "NAME_EDUCATION_TYPE_Secondary / secondary special": 111.86,
+        "OCCUPATION_TYPE_Laborers": 111.77,
+        "credit_goods_ratio": 109.89,
+        "pay_recent_days_late_mean": 106.92
+      },
+      "delta_gini_vs_champion": 0.0106
+    }
+  ],
+  "lstm_stack_reference": {
+    "gini": 0.5302,
+    "delta_vs_xgb": 0.0126,
+    "delta_ci95": [
+      0.0083,
+      0.0163
+    ]
+  },
+  "notes": {
+    "monotonic_trend_violation": "% de clientes con pendiente negativa de la PD al escalar monto, cuota y valor del bien de 0,5x a 2x (1.000 clientes de test)",
+    "monotonic_any_step_violation": "% con algún escalón descendente, aunque sea mínimo",
+    "grades_red_with_moc": "backtest por grado con PD de grado (MoC estimado en validación)",
+    "payments": "Variables agregadas de installments_payments (cuotas de créditos anteriores)"
+  }
+}

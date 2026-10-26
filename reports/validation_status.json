@@ -1,0 +1,99 @@
+{
+  "label": "APROBADO CON CONDICIONES",
+  "level": "warn",
+  "n_findings": {
+    "Alta": 0,
+    "Media": 5,
+    "Baja": 6
+  },
+  "findings": [
+    {
+      "id": "FAIR-age_group",
+      "severidad": "Media",
+      "titulo": "Flags de fairness en age_group",
+      "detalle": "DPD 0.151 supera 0.1; TPR gap 0.319 supera 0.1; FPR gap 0.124 supera 0.1. DIR 0.847 (regla 4/5 cumplida).",
+      "recomendacion": "Decisión de negocio/legal documentada sobre el uso de la edad; ver hallazgo NB03-1 sobre el canal de los scores de bureau.",
+      "referencia": "reports/fairness_report.json"
+    },
+    {
+      "id": "VAL-SEG",
+      "severidad": "Media",
+      "titulo": "Discriminación menor en segmentos",
+      "detalle": "<25 (Gini 0.464), >55 (Gini 0.422), Pensioner (Gini 0.445) vs 0.518 global.",
+      "recomendacion": "Monitorear Gini por segmento; revisión manual o modelo específico si se usa para pricing.",
+      "referencia": "reports/model_validation.json → segment_performance; notebook 03 §3.4"
+    },
+    {
+      "id": "NB04-1",
+      "severidad": "Media",
+      "titulo": "PD no monótona respecto del monto solicitado",
+      "detalle": "En ~36% de los clientes, pedir más monto (con cuota y valor del bien proporcionales) baja la PD. El modelo aprendió una correlación de selección, no una relación causal.",
+      "recomendacion": "Resuelto en los challengers M1/M3 (monotone_constraints + credit_goods_ratio en lugar de AMT_GOODS_PRICE): violación 0%, a un costo de ~0,5–0,9 puntos de Gini. Ver reports/challengers.json.",
+      "referencia": "notebooks/04_robustez_counterfactuals.ipynb §4.2"
+    },
+    {
+      "id": "NB03-1",
+      "severidad": "Media",
+      "titulo": "Impacto diferencial por edad transmitido por los scores de bureau",
+      "detalle": "Los menores de 35 están sobre-representados en los rechazos incorrectos de alta confianza (ratio 1,8–2,3). SHAP muestra que la causa son los EXT_SOURCE (EXT_SOURCE_1 tiene correlación 0,60 con la edad), no la variable edad.",
+      "recomendacion": "Revisión manual de jóvenes rechazados cerca del cutoff; documentar la justificación de negocio; evaluar fuentes alternativas para clientes con poco historial.",
+      "referencia": "notebooks/03_error_analysis.ipynb §3.3, notebooks/01_eda.ipynb §1.4"
+    },
+    {
+      "id": "NB07-1",
+      "severidad": "Media",
+      "titulo": "Calibración desigual por género",
+      "detalle": "Con el género fuera del modelo, la PD subestima a los hombres (9,2% vs 10,2% observado, −9,6%) y sobreestima a las mujeres (+4,4%). Es el trade-off entre fairness through unawareness y calibración por grupo.",
+      "recomendacion": "Documentar la decisión de política; monitorear la calibración por género junto con DIR/DPD.",
+      "referencia": "notebooks/07_advanced_validation.ipynb §1"
+    },
+    {
+      "id": "VAL-MOC",
+      "severidad": "Baja",
+      "titulo": "Remediación aplicada: PD de grado con margen de conservadurismo",
+      "detalle": "Con la PD individual el backtest fallaba en la cola (grado G: Jeffreys p 0.010 → 0.679; grado F: Jeffreys p 0.047 → 0.258). La PD de grado = máx(PD media, percentil 75 de Jeffreys del default observado en validación) corrige la subestimación; la pérdida esperada sube +5.2%.",
+      "recomendacion": "Re-estimar el MoC en cada recalibración y backtestearlo semestralmente; la PD individual sigue usándose para ordenar y decidir.",
+      "referencia": "models/champion/grade_pd.json; src/models/moc.py"
+    },
+    {
+      "id": "VAL-BENCH",
+      "severidad": "Baja",
+      "titulo": "Ganancia moderada sobre los benchmarks",
+      "detalle": "Gini XGBoost 0.518 vs logística 0.496 (+0.021) y scorecard WoE 0.482 (+0.036).",
+      "recomendacion": "Si la interpretabilidad pesa más que ~3–4 puntos de Gini, el scorecard es una alternativa defendible.",
+      "referencia": "reports/scorecard.json"
+    },
+    {
+      "id": "CH-1",
+      "severidad": "Baja",
+      "titulo": "Challenger recomendado: M3_monotonico_pagos",
+      "detalle": "Gini 0.528 (Δ +0.011 vs champion, IC95% pareado [+0.005; +0.016]), monótono en el monto, ECE 0.004 y backtest por grado sin rojos con MoC.",
+      "recomendacion": "Promoverlo a candidato a champion en el próximo ciclo, con validación completa (fairness, estabilidad y análisis de errores).",
+      "referencia": "reports/challengers.json; src/models/challengers.py"
+    },
+    {
+      "id": "NB02-1",
+      "severidad": "Baja",
+      "titulo": "El cutoff por break-even usa la TEA nominal",
+      "detalle": "Con TEAs nominales altas (Argentina 80%, Brasil 59%) la regla aprueba al 99,9%. No descuenta inflación, fondeo ni costos operativos.",
+      "recomendacion": "Modelar el margen neto real por mercado antes de usar la regla fuera de USA.",
+      "referencia": "notebooks/02_threshold_analysis.ipynb §2.4"
+    },
+    {
+      "id": "NB04-2",
+      "severidad": "Baja",
+      "titulo": "Decisiones frágiles cerca del cutoff",
+      "detalle": "Con ruido de ±5% en las variables de entrada, la decisión cambia en el 27% de los clientes a menos de 3 pp del cutoff (contra el 0,6% lejos del cutoff).",
+      "recomendacion": "Banda de revisión manual de ±3 pp alrededor del cutoff (~5% de las solicitudes).",
+      "referencia": "notebooks/04_robustez_counterfactuals.ipynb §4.1"
+    },
+    {
+      "id": "NB06-1",
+      "severidad": "Baja",
+      "titulo": "La información de pagos anteriores es incremental",
+      "detalle": "El stack XGBoost + LSTM llega a Gini 0,530 (+0,013). Variables agregadas simples de installments_payments dentro de XGBoost (challenger M2) logran 0,534: la misma ganancia sin red recurrente.",
+      "recomendacion": "Preferir las variables agregadas (M2/M3) al LSTM; ver challenger recomendado.",
+      "referencia": "notebooks/06_deep_learning.ipynb §3; reports/challengers.json"
+    }
+  ]
+}

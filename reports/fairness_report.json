@@ -1,0 +1,120 @@
+{
+  "overall_fairness_passed": false,
+  "decision_rule": "rechazar si PD calibrada >= 0.2035 (break-even USA)",
+  "cutoff_pd": 0.2035,
+  "protected_attributes_analyzed": [
+    "gender",
+    "age_group"
+  ],
+  "attribute_in_model": {
+    "gender": false,
+    "age_group": true
+  },
+  "results": {
+    "gender": {
+      "approval_rates": {
+        "F": 0.941,
+        "M": 0.8973
+      },
+      "default_rates": {
+        "F": 0.0699,
+        "M": 0.1017
+      },
+      "mean_pd": {
+        "F": 0.073,
+        "M": 0.0919
+      },
+      "demographic_parity_difference": 0.0437,
+      "disparate_impact_ratio": 0.9535,
+      "equalized_odds": {
+        "F": {
+          "tpr": 0.2398,
+          "fpr": 0.0454
+        },
+        "M": {
+          "tpr": 0.3354,
+          "fpr": 0.0764
+        },
+        "tpr_gap": 0.0956,
+        "fpr_gap": 0.031
+      },
+      "auc_by_group": {
+        "F": 0.7517,
+        "M": 0.7594
+      },
+      "regulatory_flags": [],
+      "passed": true
+    },
+    "age_group": {
+      "approval_rates": {
+        "25-35": 0.8723,
+        "35-45": 0.9199,
+        "45-55": 0.9461,
+        "<25": 0.8344,
+        ">55": 0.9856
+      },
+      "default_rates": {
+        "25-35": 0.1051,
+        "35-45": 0.0828,
+        "45-55": 0.0733,
+        "<25": 0.1173,
+        ">55": 0.0538
+      },
+      "mean_pd": {
+        "25-35": 0.1037,
+        "35-45": 0.0821,
+        "45-55": 0.0713,
+        "<25": 0.1221,
+        ">55": 0.0517
+      },
+      "demographic_parity_difference": 0.1511,
+      "disparate_impact_ratio": 0.8466,
+      "equalized_odds": {
+        "25-35": {
+          "tpr": 0.3675,
+          "fpr": 0.0996
+        },
+        "35-45": {
+          "tpr": 0.2968,
+          "fpr": 0.0605
+        },
+        "45-55": {
+          "tpr": 0.2415,
+          "fpr": 0.039
+        },
+        "<25": {
+          "tpr": 0.4014,
+          "fpr": 0.1342
+        },
+        ">55": {
+          "tpr": 0.0822,
+          "fpr": 0.0106
+        },
+        "tpr_gap": 0.3192,
+        "fpr_gap": 0.1236
+      },
+      "auc_by_group": {
+        "25-35": 0.7545,
+        "35-45": 0.7659,
+        "45-55": 0.759,
+        "<25": 0.7318,
+        ">55": 0.7108
+      },
+      "regulatory_flags": [
+        "DPD 0.151 supera 0.1",
+        "TPR gap 0.319 supera 0.1",
+        "FPR gap 0.124 supera 0.1"
+      ],
+      "passed": false
+    }
+  },
+  "thresholds": {
+    "demographic_parity_max": 0.1,
+    "disparate_impact_min": 0.8,
+    "equalized_odds_max_gap": 0.1
+  },
+  "references": [
+    "ECOA / Regulation B",
+    "EU AI Act Art. 10"
+  ]
+}

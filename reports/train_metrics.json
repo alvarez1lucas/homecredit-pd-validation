@@ -1,0 +1,26 @@
+{
+  "model": "xgboost",
+  "gini": 0.5176,
+  "auc_roc": 0.7588,
+  "avg_precision": 0.2484,
+  "val_gini": 0.5086,
+  "gini_lift_vs_baseline": 0.0214,
+  "best_iteration": 384,
+  "mean_raw_score": 0.3882,
+  "mean_pd_calibrated": 0.0794,
+  "observed_default_rate": 0.0807,
+  "brier_raw": 0.182,
+  "brier_calibrated": 0.0677,
+  "decision": {
+    "cutoff_pd": 0.2035,
+    "approval_rate": 0.9261,
+    "default_rate_approved": 0.0627,
+    "default_rate_rejected": 0.3068,
+    "precision_reject": 0.3068,
+    "recall_defaults": 0.2808,
+    "tp": 1394,
+    "fp": 3149,
+    "fn": 3571,
+    "tn": 53389
+  }
+}
